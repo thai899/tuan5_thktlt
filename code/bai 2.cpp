@@ -56,6 +56,13 @@ int tongLe(int a[], int n) {
         return a[n - 1] + tongLe(a, n - 1);
     return tongLe(a, n - 1);
 }
+void xuatViTriLe(int a[], int n, int index) {
+    if (index >= n)
+        return;
+    if (index % 2 != 0)
+        printf("%d ", a[index]);
+    xuatViTriLe(a, n, index + 1);
+}
 int main() {
     int lc;
     do {
@@ -118,6 +125,19 @@ int main() {
             printf("Mang ngau nhien: ");
             xuatMang(a, n);
             printf("Tong cac phan tu le: %d\n", tongLe(a, n));
+        }break;
+        case 5:
+        {
+            int n;
+            printf("Nhap so luong phan tu cua mang: ");
+            scanf_s("%d", &n);
+            int a[50];
+            nhapMangNgauNhien(a, n);
+            printf("Mang ngau nhien: ");
+            xuatMang(a, n);
+            printf("Cac so o vi tri le: ");
+            xuatViTriLe(a, n, 0);
+            printf("\n");
         }break;
         }
     } while (lc <= 5);
