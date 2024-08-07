@@ -49,6 +49,13 @@ int maxChan(int a[], int n) {
         return a[n - 1];
     return max;
 }
+int tongLe(int a[], int n) {
+    if (n == 0)
+        return 0;
+    if (a[n - 1] % 2 != 0)
+        return a[n - 1] + tongLe(a, n - 1);
+    return tongLe(a, n - 1);
+}
 int main() {
     int lc;
     do {
@@ -100,6 +107,17 @@ int main() {
                 printf("Gia tri chan lon nhat: %d\n", max);
             else
                 printf("Khong co gia tri chan nao\n");
+        }break;
+        case 4 :
+        {
+            int n;
+            printf("Nhap so luong phan tu cua mang: ");
+            scanf_s("%d", &n);
+            int a[50];
+            nhapMangNgauNhien(a, n);
+            printf("Mang ngau nhien: ");
+            xuatMang(a, n);
+            printf("Tong cac phan tu le: %d\n", tongLe(a, n));
         }break;
         }
     } while (lc <= 5);
