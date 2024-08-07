@@ -41,6 +41,14 @@ int timKiemNhiPhan(int a[], int x, int left, int right) {
         return timKiemNhiPhan(a, x, left, mid - 1);
     return timKiemNhiPhan(a, x, mid + 1, right);
 }
+int maxChan(int a[], int n) {
+    if (n == 0)
+        return INT_MIN;
+    int max = maxChan(a, n - 1);
+    if (a[n - 1] % 2 == 0 && a[n - 1] > max)
+        return a[n - 1];
+    return max;
+}
 int main() {
     int lc;
     do {
@@ -77,6 +85,21 @@ int main() {
                 printf("Tim thay %d o vi tri %d\n", x, index);
             else
                 printf("Khong tim thay %d\n", x);
+        }break;
+        case 3 :
+        {
+            int n;
+            printf("Nhap so luong phan tu cua mang: ");
+            scanf_s("%d", &n);
+            int a[50];
+            nhapMangNgauNhien(a, n);
+            printf("Mang ngau nhien: ");
+            xuatMang(a, n);
+            int max = maxChan(a, n);
+            if (max != INT_MIN)
+                printf("Gia tri chan lon nhat: %d\n", max);
+            else
+                printf("Khong co gia tri chan nao\n");
         }break;
         }
     } while (lc <= 5);
