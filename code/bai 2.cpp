@@ -31,6 +31,16 @@ int tongChan(int a[], int n) {
         return a[n - 1] + tongChan(a, n - 1);
     return tongChan(a, n - 1);
 }
+int timKiemNhiPhan(int a[], int x, int left, int right) {
+    if (left > right)
+        return -1;
+    int mid = (left + right) / 2;
+    if (a[mid] == x)
+        return mid;
+    if (a[mid] > x)
+        return timKiemNhiPhan(a, x, left, mid - 1);
+    return timKiemNhiPhan(a, x, mid + 1, right);
+}
 int main() {
     int lc;
     do {
@@ -50,6 +60,25 @@ int main() {
             xuatMang(a, n);
             printf("Tong cac phan tu chan: %d\n", tongChan(a, n));
         }break;
+        case 2:
+        {
+            int n;
+            printf("Nhap so luong phan tu cua mang: ");
+            scanf_s("%d", &n);
+            int a[50];
+            nhapMangNgauNhien(a, n);
+            printf("Mang ngau nhien: ");
+            xuatMang(a, n);
+            int x;
+            printf("Nhap gia tri can tim: ");
+            scanf_s("%d", &x);
+            int index = timKiemNhiPhan(a, x, 0, n - 1);
+            if (index != -1)
+                printf("Tim thay %d o vi tri %d\n", x, index);
+            else
+                printf("Khong tim thay %d\n", x);
+        }break;
         }
     } while (lc <= 5);
+    return 0;
 }
